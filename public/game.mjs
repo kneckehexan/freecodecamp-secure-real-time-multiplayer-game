@@ -12,7 +12,7 @@ let tick;
 let playerEntity;
 let foodEntity;
 let mineEntity;
-let players = [];
+let playerList = [];
 
 let avatarMe = new Image();
 let avatarOther = new Image();
@@ -30,7 +30,7 @@ const init = () => {
     playerEntity = new Player(players.filter(x => x.id === id)[0]);
     mineEntity = new Player(mineItem);
     foodEntity = new Collectible(foodItem);
-    players = players;
+    playerList = players;
 
     document.onkeydown = e => {
       var dir = null;
@@ -62,7 +62,7 @@ const init = () => {
     socket.on('update', ({players: players, mine: mine, food: food, player: player}) => {
       mineEntity = new Player(mine);
       foodEntity = new Collectible(food);
-      players = players;
+      playerList = players;
       if (player && player.id === playerEntity.id) {
         playerEntity = new Player(player)
       }
@@ -93,11 +93,12 @@ const update = () => {
   context.font = "20px 'Press Start 2P'";
   context.fillText('SquareIo', 330, 40);
 
+
   if (playerEntity) {
     playerEntity.draw(context, avatarMe);
     context.font = "16px 'Press Start 2P'";
-    context.fillText(playerEntity.calculateRank(players), 560, 40);
-    for (p of players) {
+    context.fillText(playerEntity.calculateRank(playerList), 560, 40);
+    for (var p of playerList) {
       if (p.id !== playerEntity.id) {
         let newP = new Player(p);
         newP.draw(context, avatarOther);

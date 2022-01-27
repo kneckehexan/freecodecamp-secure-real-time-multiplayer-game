@@ -10,7 +10,7 @@ export default {
   gameAreaX: CANVASWIDTH - 2 * BORDER,
   gameAreaY: CANVASHEIGHT - 2 * BORDER - TITLE,
   minX: BORDER,
-  minY: BORDER + TITLE,
+  minY: TITLE + BORDER,
   maxX: CANVASWIDTH - BORDER,
   maxY: CANVASHEIGHT - BORDER
 }

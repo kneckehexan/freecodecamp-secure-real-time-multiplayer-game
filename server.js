@@ -67,7 +67,7 @@ const random = (min, max) => {
 
 const getRandomPos = () => {
   let x = Math.floor(random(dim.minX + 50, dim.maxX - 50) / 10) * 10;
-  let y = Math.floor(random(dim.minY + 50, dim.maxY + 50) / 10) * 10;
+  let y = Math.floor(random(dim.minY + 50, dim.maxY - 50) / 10) * 10;
   return [x, y];
 }
 
@@ -116,10 +116,10 @@ setInterval(tick, 1000/50);
 let VX = 2;
 let VY = 2;
 function tick() {
-  if (mineEntity.x > dim.maxX) VX = -VX;
-  if (mineEntity.y > dim.maxY) VY = -VY;
-  if (mineEntity.x <= dim.minX) VX = -VX;
-  if (mineEntity.x <= dim.minY) VY = -VY;
+  if (mineEntity.x + mineEntity.w > dim.maxX) VX = -VX;
+  if (mineEntity.y + mineEntity.h > dim.maxY) VY = -VY;
+  if (mineEntity.x < dim.minX) VX = -VX;
+  if (mineEntity.y < dim.minY) VY = -VY;
   mineEntity.x += VX;
   mineEntity.y += VY;
   let playerUpdate = null;
@@ -138,7 +138,6 @@ function tick() {
       p.score += foodEntity.value;
       let [foodX, foodY] = getRandomPos();
       foodEntity = new Collectible({x: foodX, y: foodY, value: 1, id: uuidv4()});
-      console.log(foodEntity);
       playerUpdate = p;
     }
   }

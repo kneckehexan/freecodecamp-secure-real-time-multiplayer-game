@@ -30,11 +30,9 @@ const init = () => {
     playerEntity = new Player(players.filter(x => x.id === id)[0]);
     mineEntity = new Player(mineItem);
     foodEntity = new Collectible(foodItem);
-    console.log('Mine: ', mineEntity, '\n', 'Food: ', foodEntity);
     players = players;
 
     document.onkeydown = e => {
-      console.log(e);
       var dir = null;
       switch(e.key) {
         case 'w':
@@ -62,7 +60,6 @@ const init = () => {
     }
 
     socket.on('update', ({players: players, mine: mine, food: food, player: player}) => {
-      console.log('game update')
       mineEntity = new Player(mine);
       foodEntity = new Collectible(food);
       players = players;
@@ -76,7 +73,6 @@ const init = () => {
 }
 
 const update = () => {
-  console.log('game update function')
   context.clearRect(0, 0, canvas.width, canvas.height)
   
   context.fillStyle = '#FFF';

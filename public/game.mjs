@@ -75,9 +75,11 @@ const init = () => {
 const update = () => {
   context.clearRect(0, 0, canvas.width, canvas.height)
   
+  // Paint the canvas white
   context.fillStyle = '#FFF';
   context.fillRect(0, 0, canvas.width, canvas.height);
 
+  // Add a border
   context.strokeStyle = '#000';
   context.strokeRect(dim.minX, dim.minY, dim.gameAreaX, dim.gameAreaY);
 
@@ -93,7 +95,7 @@ const update = () => {
   context.font = "20px 'Press Start 2P'";
   context.fillText('SquareIo', 330, 40);
 
-
+  // Add rank text and draw the player
   if (playerEntity) {
     playerEntity.draw(context, avatarMe);
     context.font = "16px 'Press Start 2P'";

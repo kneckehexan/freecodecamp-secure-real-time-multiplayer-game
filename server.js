@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const expect = require('chai');
 const socket = require('socket.io');
 const cors = require('cors');
+const helmet = require('helmet');
 const {v4: uuidv4} = require('uuid');
 
 const fccTestingRoutes = require('./routes/fcctesting.js');
@@ -16,6 +17,15 @@ app.use('/assets', express.static(process.cwd() + '/assets'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(helmet({
+  noSniff: true,
+  xssFilter: true,
+  noCache: true,
+  hidePoweredBy: {
+    setTo: 'PHP 7.4.3'
+  }
+}));
 
 //For FCC testing purposes and enables user to connect from outside the hosting platform
 app.use(cors({origin: '*'})); 

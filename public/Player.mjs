@@ -40,10 +40,10 @@ class Player {
   }
 
   calculateRank(arr) {
-    arr.sort((a,b) => a.score - b.score);
+    arr.sort((a,b) => a.score > b.score);
     var currentRank = arr.findIndex(x => x.id === this.id) + 1;
     var totalPlayers = arr.length
-    return `Rank: ${currentRank}/${totalPlayers}`
+    return `Rank: ${currentRank} / ${totalPlayers}`
   }
 }
 

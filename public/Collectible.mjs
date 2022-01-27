@@ -4,10 +4,12 @@ class Collectible {
     this.y = y;
     this.value = value;
     this.id = id;
+    this.w = 10;
+    this.h = 10;
   }
 
   draw (context, img) {
-    context.drawImage(img, this.x, this.y)
+    context.drawImage(img, this.x, this.y, this.w, this.h)
   }
 }
 

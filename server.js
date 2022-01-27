@@ -111,7 +111,7 @@ io.sockets.on('connection', socket => {
   });
 });
 
-setInterval(tick, 1000);
+setInterval(tick, 1000/50);
 
 let VX = 2;
 let VY = 2;
@@ -135,9 +135,10 @@ function tick() {
 
     let newP = new Player(p);
     if (newP.collision(foodEntity)) {
-      p.score += 1;
+      p.score += foodEntity.value;
       let [foodX, foodY] = getRandomPos();
       foodEntity = new Collectible({x: foodX, y: foodY, value: 1, id: uuidv4()});
+      console.log(foodEntity);
       playerUpdate = p;
     }
   }

@@ -5,6 +5,10 @@ class Collectible {
     this.value = value;
     this.id = id;
   }
+
+  draw (context, img) {
+    context.drawImage(img, this.x, this.y)
+  }
 }
 
 /*
